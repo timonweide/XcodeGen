@@ -759,6 +759,7 @@ class SpecLoadingTests: XCTestCase {
                     "region": "US",
                     "disableMainThreadChecker": true,
                     "stopOnEveryMainThreadCheckerIssue": true,
+                    "disablePerformanceAntipatternChecker": true,
                     "environmentVariables": [
                         "TEST_VAR": "TEST_VAL",
                     ],
@@ -788,6 +789,7 @@ class SpecLoadingTests: XCTestCase {
                     region: "US",
                     disableMainThreadChecker: true,
                     stopOnEveryMainThreadCheckerIssue: true,
+                    disablePerformanceAntipatternChecker: true,
                     commandLineArguments: ["ENV1": true],
                     environmentVariables: [XCScheme.EnvironmentVariable(variable: "TEST_VAR", value: "TEST_VAL", enabled: true)],
                     preActions: [.init(name: "Do Thing", script: "dothing", settingsTarget: "test")],

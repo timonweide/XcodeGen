@@ -558,6 +558,7 @@ class ProjectSpecTests: XCTestCase {
                                                                          storeKitConfiguration: "Configuration.storekit",
                                                                          disableMainThreadChecker: true,
                                                                          stopOnEveryMainThreadCheckerIssue: false,
+                                                                         disablePerformanceAntipatternChecker: true,
                                                                          commandLineArguments: ["foo": true],
                                                                          environmentVariables: [XCScheme.EnvironmentVariable(variable: "environmentVariable",
                                                                                                                              value: "bar",
