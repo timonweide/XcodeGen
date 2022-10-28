@@ -158,8 +158,8 @@ targets:
       coverageTargets:
         - App_iOS
       disableMainThreadChecker: true
-      stopOnEveryMainThreadCheckerIssue: true
       disablePerformanceAntipatternChecker: true
+      stopOnEveryMainThreadCheckerIssue: true
       configVariants:
         - Test
         - Staging

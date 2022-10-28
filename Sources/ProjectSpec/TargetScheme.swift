@@ -5,8 +5,8 @@ import XcodeProj
 public struct TargetScheme: Equatable {
     public static let gatherCoverageDataDefault = false
     public static let disableMainThreadCheckerDefault = false
-    public static let stopOnEveryMainThreadCheckerIssueDefault = false
     public static let disablePerformanceAntipatternChecker = false
+    public static let stopOnEveryMainThreadCheckerIssueDefault = false
     public static let buildImplicitDependenciesDefault = true
 
     public var testTargets: [Scheme.Test.TestTarget]
@@ -17,8 +17,8 @@ public struct TargetScheme: Equatable {
     public var language: String?
     public var region: String?
     public var disableMainThreadChecker: Bool
-    public var stopOnEveryMainThreadCheckerIssue: Bool
     public var disablePerformanceAntipatternChecker: Bool
+    public var stopOnEveryMainThreadCheckerIssue: Bool
     public var buildImplicitDependencies: Bool
     public var commandLineArguments: [String: Bool]
     public var environmentVariables: [XCScheme.EnvironmentVariable]
@@ -36,8 +36,8 @@ public struct TargetScheme: Equatable {
         language: String? = nil,
         region: String? = nil,
         disableMainThreadChecker: Bool = disableMainThreadCheckerDefault,
-        stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
         disablePerformanceAntipatternChecker: Bool = disablePerformanceAntipatternChecker,
+        stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
         buildImplicitDependencies: Bool = buildImplicitDependenciesDefault,
         commandLineArguments: [String: Bool] = [:],
         environmentVariables: [XCScheme.EnvironmentVariable] = [],
@@ -53,8 +53,8 @@ public struct TargetScheme: Equatable {
         self.language = language
         self.region = region
         self.disableMainThreadChecker = disableMainThreadChecker
-        self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
         self.disablePerformanceAntipatternChecker = disablePerformanceAntipatternChecker
+        self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
         self.buildImplicitDependencies = buildImplicitDependencies
         self.commandLineArguments = commandLineArguments
         self.environmentVariables = environmentVariables
@@ -103,8 +103,8 @@ extension TargetScheme: JSONObjectConvertible {
         language = jsonDictionary.json(atKeyPath: "language")
         region = jsonDictionary.json(atKeyPath: "region")
         disableMainThreadChecker = jsonDictionary.json(atKeyPath: "disableMainThreadChecker") ?? TargetScheme.disableMainThreadCheckerDefault
-        stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? TargetScheme.stopOnEveryMainThreadCheckerIssueDefault
         disablePerformanceAntipatternChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? TargetScheme.disablePerformanceAntipatternChecker
+        stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? TargetScheme.stopOnEveryMainThreadCheckerIssueDefault
         buildImplicitDependencies = jsonDictionary.json(atKeyPath: "buildImplicitDependencies") ?? TargetScheme.buildImplicitDependenciesDefault
         commandLineArguments = jsonDictionary.json(atKeyPath: "commandLineArguments") ?? [:]
         environmentVariables = try XCScheme.EnvironmentVariable.parseAll(jsonDictionary: jsonDictionary)
@@ -137,13 +137,13 @@ extension TargetScheme: JSONEncodable {
         if disableMainThreadChecker != TargetScheme.disableMainThreadCheckerDefault {
             dict["disableMainThreadChecker"] = disableMainThreadChecker
         }
-
-        if stopOnEveryMainThreadCheckerIssue != TargetScheme.stopOnEveryMainThreadCheckerIssueDefault {
-            dict["stopOnEveryMainThreadCheckerIssue"] = stopOnEveryMainThreadCheckerIssue
-        }
         
         if disablePerformanceAntipatternChecker != TargetScheme.disablePerformanceAntipatternChecker {
             dict["disablePerformanceAntipatternChecker"] = disablePerformanceAntipatternChecker
+        }
+
+        if stopOnEveryMainThreadCheckerIssue != TargetScheme.stopOnEveryMainThreadCheckerIssueDefault {
+            dict["stopOnEveryMainThreadCheckerIssue"] = stopOnEveryMainThreadCheckerIssue
         }
 
         if buildImplicitDependencies != TargetScheme.buildImplicitDependenciesDefault {

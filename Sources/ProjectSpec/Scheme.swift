@@ -101,8 +101,8 @@ public struct Scheme: Equatable {
 
     public struct Run: BuildAction {
         public static let disableMainThreadCheckerDefault = false
-        public static let stopOnEveryMainThreadCheckerIssueDefault = false
         public static let disablePerformanceAntipatternCheckerDefault = false
+        public static let stopOnEveryMainThreadCheckerIssueDefault = false
         public static let debugEnabledDefault = true
 
         public var config: String?
@@ -112,8 +112,8 @@ public struct Scheme: Equatable {
         public var environmentVariables: [XCScheme.EnvironmentVariable]
         public var enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode
         public var disableMainThreadChecker: Bool
-        public var stopOnEveryMainThreadCheckerIssue: Bool
         public var disablePerformanceAntipatternChecker: Bool
+        public var stopOnEveryMainThreadCheckerIssue: Bool
         public var language: String?
         public var region: String?
         public var askForAppToLaunch: Bool?
@@ -134,8 +134,8 @@ public struct Scheme: Equatable {
             environmentVariables: [XCScheme.EnvironmentVariable] = [],
             enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode,
             disableMainThreadChecker: Bool = disableMainThreadCheckerDefault,
-            stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
             disablePerformanceAntipatternChecker: Bool = disablePerformanceAntipatternCheckerDefault,
+            stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
             language: String? = nil,
             region: String? = nil,
             askForAppToLaunch: Bool? = nil,
@@ -153,8 +153,8 @@ public struct Scheme: Equatable {
             self.environmentVariables = environmentVariables
             self.disableMainThreadChecker = disableMainThreadChecker
             self.enableGPUFrameCaptureMode = enableGPUFrameCaptureMode
-            self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
             self.disablePerformanceAntipatternChecker = disablePerformanceAntipatternChecker
+            self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
             self.language = language
             self.region = region
             self.askForAppToLaunch = askForAppToLaunch
@@ -421,8 +421,8 @@ extension Scheme.Run: JSONObjectConvertible {
             enableGPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode
         }
         disableMainThreadChecker = jsonDictionary.json(atKeyPath: "disableMainThreadChecker") ?? Scheme.Run.disableMainThreadCheckerDefault
-        stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault
         disablePerformanceAntipatternChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? Scheme.Run.disablePerformanceAntipatternCheckerDefault
+        stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault
         language = jsonDictionary.json(atKeyPath: "language")
         region = jsonDictionary.json(atKeyPath: "region")
         debugEnabled = jsonDictionary.json(atKeyPath: "debugEnabled") ?? Scheme.Run.debugEnabledDefault
@@ -469,13 +469,13 @@ extension Scheme.Run: JSONEncodable {
         if disableMainThreadChecker != Scheme.Run.disableMainThreadCheckerDefault {
             dict["disableMainThreadChecker"] = disableMainThreadChecker
         }
-
-        if stopOnEveryMainThreadCheckerIssue != Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault {
-            dict["stopOnEveryMainThreadCheckerIssue"] = stopOnEveryMainThreadCheckerIssue
-        }
         
         if disablePerformanceAntipatternChecker != Scheme.Run.disablePerformanceAntipatternCheckerDefault {
             dict["disablePerformanceAntipatternChecker"] = disablePerformanceAntipatternChecker
+        }
+
+        if stopOnEveryMainThreadCheckerIssue != Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault {
+            dict["stopOnEveryMainThreadCheckerIssue"] = stopOnEveryMainThreadCheckerIssue
         }
 
         if debugEnabled != Scheme.Run.debugEnabledDefault {
