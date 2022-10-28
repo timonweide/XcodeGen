@@ -102,7 +102,7 @@ public struct Scheme: Equatable {
     public struct Run: BuildAction {
         public static let disableMainThreadCheckerDefault = false
         public static let stopOnEveryMainThreadCheckerIssueDefault = false
-        public static let disablePerformanceAntipatternChecker = false
+        public static let disablePerformanceAntipatternCheckerDefault = false
         public static let debugEnabledDefault = true
 
         public var config: String?
@@ -135,7 +135,7 @@ public struct Scheme: Equatable {
             enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode,
             disableMainThreadChecker: Bool = disableMainThreadCheckerDefault,
             stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
-            disablePerformanceAntipatternChecker: Bool = disablePerformanceAntipatternChecker,
+            disablePerformanceAntipatternChecker: Bool = disablePerformanceAntipatternCheckerDefault,
             language: String? = nil,
             region: String? = nil,
             askForAppToLaunch: Bool? = nil,
@@ -422,7 +422,7 @@ extension Scheme.Run: JSONObjectConvertible {
         }
         disableMainThreadChecker = jsonDictionary.json(atKeyPath: "disableMainThreadChecker") ?? Scheme.Run.disableMainThreadCheckerDefault
         stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault
-        disablePerformanceAntipatternChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? Scheme.Run.disablePerformanceAntipatternChecker
+        disablePerformanceAntipatternChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? Scheme.Run.disablePerformanceAntipatternCheckerDefault
         language = jsonDictionary.json(atKeyPath: "language")
         region = jsonDictionary.json(atKeyPath: "region")
         debugEnabled = jsonDictionary.json(atKeyPath: "debugEnabled") ?? Scheme.Run.debugEnabledDefault
@@ -474,7 +474,7 @@ extension Scheme.Run: JSONEncodable {
             dict["stopOnEveryMainThreadCheckerIssue"] = stopOnEveryMainThreadCheckerIssue
         }
         
-        if disablePerformanceAntipatternChecker != Scheme.Run.disablePerformanceAntipatternChecker {
+        if disablePerformanceAntipatternChecker != Scheme.Run.disablePerformanceAntipatternCheckerDefault {
             dict["disablePerformanceAntipatternChecker"] = disablePerformanceAntipatternChecker
         }
 
