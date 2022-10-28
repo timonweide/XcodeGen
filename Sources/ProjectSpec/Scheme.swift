@@ -101,6 +101,7 @@ public struct Scheme: Equatable {
 
     public struct Run: BuildAction {
         public static let disableMainThreadCheckerDefault = false
+        public static let disableThreadPerformanceCheckerDefault = false
         public static let stopOnEveryMainThreadCheckerIssueDefault = false
         public static let debugEnabledDefault = true
 
@@ -112,6 +113,7 @@ public struct Scheme: Equatable {
         public var enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode
         public var disableMainThreadChecker: Bool
         public var stopOnEveryMainThreadCheckerIssue: Bool
+        public var disableThreadPerformanceChecker: Bool
         public var language: String?
         public var region: String?
         public var askForAppToLaunch: Bool?
@@ -133,6 +135,7 @@ public struct Scheme: Equatable {
             enableGPUFrameCaptureMode: XCScheme.LaunchAction.GPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode,
             disableMainThreadChecker: Bool = disableMainThreadCheckerDefault,
             stopOnEveryMainThreadCheckerIssue: Bool = stopOnEveryMainThreadCheckerIssueDefault,
+            disableThreadPerformanceChecker: Bool = disableThreadPerformanceCheckerDefault,
             language: String? = nil,
             region: String? = nil,
             askForAppToLaunch: Bool? = nil,
@@ -149,6 +152,7 @@ public struct Scheme: Equatable {
             self.postActions = postActions
             self.environmentVariables = environmentVariables
             self.disableMainThreadChecker = disableMainThreadChecker
+            self.disableThreadPerformanceChecker = disableThreadPerformanceChecker
             self.enableGPUFrameCaptureMode = enableGPUFrameCaptureMode
             self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
             self.language = language
@@ -417,6 +421,7 @@ extension Scheme.Run: JSONObjectConvertible {
             enableGPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode
         }
         disableMainThreadChecker = jsonDictionary.json(atKeyPath: "disableMainThreadChecker") ?? Scheme.Run.disableMainThreadCheckerDefault
+        disableThreadPerformanceChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? Scheme.Run.disableThreadPerformanceCheckerDefault
         stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault
         language = jsonDictionary.json(atKeyPath: "language")
         region = jsonDictionary.json(atKeyPath: "region")
@@ -467,6 +472,10 @@ extension Scheme.Run: JSONEncodable {
 
         if stopOnEveryMainThreadCheckerIssue != Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault {
             dict["stopOnEveryMainThreadCheckerIssue"] = stopOnEveryMainThreadCheckerIssue
+        }
+        
+        if disableThreadPerformanceChecker != Scheme.Run.disableThreadPerformanceCheckerDefault {
+            dict["disablePerformanceAntipatternChecker"] = disableThreadPerformanceChecker
         }
 
         if debugEnabled != Scheme.Run.debugEnabledDefault {
