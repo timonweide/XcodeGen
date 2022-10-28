@@ -311,6 +311,7 @@ public class SchemeGenerator {
             enableGPUFrameCaptureMode: scheme.run?.enableGPUFrameCaptureMode ?? XCScheme.LaunchAction.defaultGPUFrameCaptureMode,
             disableMainThreadChecker: scheme.run?.disableMainThreadChecker ?? Scheme.Run.disableMainThreadCheckerDefault,
             stopOnEveryMainThreadCheckerIssue: scheme.run?.stopOnEveryMainThreadCheckerIssue ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault,
+            disablePerformanceAntipatternChecker: scheme.run?.disableThreadPerformanceChecker ?? Scheme.Run.disableThreadPerformanceCheckerDefault,
             commandlineArguments: launchCommandLineArgs,
             environmentVariables: launchVariables,
             language: scheme.run?.language,
@@ -435,6 +436,7 @@ extension Scheme {
                 environmentVariables: targetScheme.environmentVariables,
                 disableMainThreadChecker: targetScheme.disableMainThreadChecker,
                 stopOnEveryMainThreadCheckerIssue: targetScheme.stopOnEveryMainThreadCheckerIssue,
+                disableThreadPerformanceChecker: targetScheme.disableThreadPerformanceChecker,
                 language: targetScheme.language,
                 region: targetScheme.region,
                 storeKitConfiguration: targetScheme.storeKitConfiguration

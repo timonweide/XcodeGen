@@ -101,8 +101,8 @@ public struct Scheme: Equatable {
 
     public struct Run: BuildAction {
         public static let disableMainThreadCheckerDefault = false
-        public static let disableThreadPerformanceCheckerDefault = false
         public static let stopOnEveryMainThreadCheckerIssueDefault = false
+        public static let disableThreadPerformanceCheckerDefault = false
         public static let debugEnabledDefault = true
 
         public var config: String?
@@ -152,9 +152,9 @@ public struct Scheme: Equatable {
             self.postActions = postActions
             self.environmentVariables = environmentVariables
             self.disableMainThreadChecker = disableMainThreadChecker
-            self.disableThreadPerformanceChecker = disableThreadPerformanceChecker
             self.enableGPUFrameCaptureMode = enableGPUFrameCaptureMode
             self.stopOnEveryMainThreadCheckerIssue = stopOnEveryMainThreadCheckerIssue
+            self.disableThreadPerformanceChecker = disableThreadPerformanceChecker
             self.language = language
             self.region = region
             self.askForAppToLaunch = askForAppToLaunch
@@ -421,8 +421,8 @@ extension Scheme.Run: JSONObjectConvertible {
             enableGPUFrameCaptureMode = XCScheme.LaunchAction.defaultGPUFrameCaptureMode
         }
         disableMainThreadChecker = jsonDictionary.json(atKeyPath: "disableMainThreadChecker") ?? Scheme.Run.disableMainThreadCheckerDefault
-        disableThreadPerformanceChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? Scheme.Run.disableThreadPerformanceCheckerDefault
         stopOnEveryMainThreadCheckerIssue = jsonDictionary.json(atKeyPath: "stopOnEveryMainThreadCheckerIssue") ?? Scheme.Run.stopOnEveryMainThreadCheckerIssueDefault
+        disableThreadPerformanceChecker = jsonDictionary.json(atKeyPath: "disablePerformanceAntipatternChecker") ?? Scheme.Run.disableThreadPerformanceCheckerDefault
         language = jsonDictionary.json(atKeyPath: "language")
         region = jsonDictionary.json(atKeyPath: "region")
         debugEnabled = jsonDictionary.json(atKeyPath: "debugEnabled") ?? Scheme.Run.debugEnabledDefault
